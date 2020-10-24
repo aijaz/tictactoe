@@ -50,6 +50,9 @@ def run():
             print(f"Game over: {reason}")
 
 def check_for_game_over(board, moves_made):
+    if moves_made < 5:
+        return (False, '')
+    
     lines = (
         # 3 horizontal lines
         ((0,0), (0,1), (0,2)),
