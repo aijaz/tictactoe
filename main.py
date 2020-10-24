@@ -13,6 +13,9 @@ print("|".join(["7", "8", "9"]))
 while moves_made < 9:
     move = input(f"{current_player}'s turn to make a move. Enter a number from 1 to 9: ")
     move = int(move) - 1
+    if move < 0 or move > 8 :
+        print("Invalid move. Try again.")
+        continue
 
     row = int(move / 3)
     col = move % 3
