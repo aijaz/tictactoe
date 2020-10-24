@@ -8,6 +8,7 @@ def printBoard(board):
 
 def run():
     moves_made = 0
+    game_over = False
 
     board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     current_player = 'O'
@@ -18,9 +19,7 @@ def run():
     print("-+-+-")
     print("|".join(["7", "8", "9"]))
 
-
-
-    while moves_made < 9:
+    while not game_over:
         move = input(f"{current_player}'s turn to make a move. Enter a number from 1 to 9: ")
         move = int(move) - 1
         if move < 0 or move > 8 :
@@ -44,5 +43,44 @@ def run():
         printBoard(board)
 
         moves_made += 1
+
+        game_over, reason = check_for_game_over(board, moves_made)
+
+        if game_over:
+            print(f"Game over: {reason}")
+
+def check_for_game_over(board, moves_made):
+    lines = (
+        # 3 horizontal lines
+        ((0,0), (0,1), (0,2)),
+        ((1,0), (1,1), (1,2)),
+        ((2,0), (2,1), (2,2)),
+
+        # 3 vertical lines
+        ((0,0), (1,0), (2,0)),
+        ((0,1), (1,1), (2,1)),
+        ((0,2), (1,2), (2,2)),
+
+        # 2 diagonal lines
+        ((0,0), (1,1), (2,2)),
+        ((0,2), (1,1), (2,0)),
+    )
+
+    for line in lines:
+        numbers = {' ': 0, 'X': 0, 'O': 0}
+        for cell in line:
+            row = cell[0]
+            col = cell[1]
+            cell_contents = board[row][col]
+            numbers[cell_contents] += 1
+        if numbers['X'] == 3:
+            return (True, 'X won')
+        elif numbers['O'] == 3:
+            return (True, 'O won')
+
+    if moves_made == 9:
+        return(True, 'Board filled')
+
+    return (False, '')
 
 run()
