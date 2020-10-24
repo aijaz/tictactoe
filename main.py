@@ -1,3 +1,11 @@
+def printBoard(board):
+    print("|".join(board[0]))
+    print("-+-+-")
+    print("|".join(board[1]))
+    print("-+-+-")
+    print("|".join(board[2]))
+    print("\n\n")
+
 
 moves_made = 0
 
@@ -9,6 +17,8 @@ print("-+-+-")
 print("|".join(["4", "5", "6"]))
 print("-+-+-")
 print("|".join(["7", "8", "9"]))
+
+
 
 while moves_made < 9:
     move = input(f"{current_player}'s turn to make a move. Enter a number from 1 to 9: ")
@@ -31,12 +41,7 @@ while moves_made < 9:
     else:
         current_player = 'O'
 
-    print("|".join(board[0]))
-    print("-+-+-")
-    print("|".join(board[1]))
-    print("-+-+-")
-    print("|".join(board[2]))
-    print("\n\n")
+    printBoard(board)
 
     moves_made += 1
 
