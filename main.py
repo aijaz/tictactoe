@@ -17,6 +17,10 @@ while moves_made < 9:
     row = int(move / 3)
     col = move % 3
 
+    if board[row][col] != ' ':
+        print("That spot's already taken. Try again.")
+        continue
+
     board[row][col] = current_player
 
     if current_player == 'O':
