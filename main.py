@@ -1,7 +1,7 @@
 
 moves_made = 0
 
-board = [[' ', ' ', ' '],[' ', ' ', ' '],[' ', ' ', ' ']]
+board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 current_player = 'O'
 
 print("|".join(["1", "2", "3"]))
@@ -12,9 +12,9 @@ print("|".join(["7", "8", "9"]))
 
 while moves_made < 9:
     moves_made += 1
-    move = input("Make a move. Enter a number from 1 to 9: ")
+    move = input(f"{current_player}'s turn to make a move. Enter a number from 1 to 9: ")
     move = int(move)
-    if move == 1 :
+    if move == 1:
         board[0][0] = current_player
     elif move == 2:
         board[0][1] = current_player
@@ -44,4 +44,3 @@ while moves_made < 9:
     print("-+-+-")
     print("|".join(board[2]))
     print("\n\n")
-
